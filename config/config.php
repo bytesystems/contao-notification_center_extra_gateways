@@ -11,4 +11,4 @@
 /**
  * Notification Center Gateways
  */
-$GLOBALS['NOTIFICATION_CENTER']['GATEWAY']['zapier'] = 'bytesystems\NotificationCenterExtraGateways\Gateway\Zapier';
+$GLOBALS['NOTIFICATION_CENTER']['GATEWAY']['zapier'] = 'NotificationCenter\Gateway\Zapier';
