@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationCenterExtraGateways\Gateway;
+namespace NotificationCenter\Gateway;
 
-use NotificationCenterExtraGateways\MessageDraft\ZapierMessageDraft;
+use NotificationCenter\MessageDraft\ZapierMessageDraft;
 use NotificationCenter\Gateway\Base;
 use NotificationCenter\Gateway\GatewayInterface;
 use NotificationCenter\MessageDraft\MessageDraftFactoryInterface;

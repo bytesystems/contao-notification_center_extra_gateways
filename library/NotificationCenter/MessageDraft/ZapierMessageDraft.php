@@ -8,7 +8,7 @@
  * @license    LGPL
  */
 
-namespace NotificationCenterExtraGateways\MessageDraft;
+namespace NotificationCenter\MessageDraft;
 
 use NotificationCenter\Model\Language;
 use NotificationCenter\Model\Message;

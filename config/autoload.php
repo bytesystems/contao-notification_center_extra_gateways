@@ -8,23 +8,13 @@
  * @license LGPL-3.0+
  */
 
-
-/**
- * Register the namespaces
- */
-ClassLoader::addNamespaces(
-    [
-	'NotificationCenterExtraGateways',]
-);
-
-
 /**
  * Register the classes
  */
 ClassLoader::addClasses(
     [
 	// Library
-	'NotificationCenterExtraGateways\Gateway\Zapier'                        => 'system/modules/notification_center_extra_gateways/library/NotificationCenterExtraGateways/Gateway/Zapier.php',
-	'NotificationCenterExtraGateways\MessageDraft\ZapierMessageDraft' => 'system/modules/notification_center_extra_gateways/library/NotificationCenterExtraGateways/MessageDraft/ZapierMessageDraft.php',
+	'NotificationCenter\Gateway\Zapier'                        => 'system/modules/notification_center_extra_gateways/library/NotificationCenterExtraGateways/Gateway/Zapier.php',
+	'NotificationCenter\MessageDraft\ZapierMessageDraft' => 'system/modules/notification_center_extra_gateways/library/NotificationCenterExtraGateways/MessageDraft/ZapierMessageDraft.php',
     ]
 );
