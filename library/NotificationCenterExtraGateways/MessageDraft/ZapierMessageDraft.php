@@ -8,12 +8,8 @@
  * @license    LGPL
  */
 
-namespace HeimrichHannot\NotificationCenterPlus\MessageDraft;
+namespace bytesystems\NotificationCenterExtraGateways\MessageDraft;
 
-use HeimrichHannot\Haste\Dca\General;
-use HeimrichHannot\HastePlus\DOM;
-use HeimrichHannot\NotificationCenterPlus\NotificationCenterPlus;
-use HeimrichHannot\NotificationCenterPlus\Util\StringUtil;
 use NotificationCenter\Model\Language;
 use NotificationCenter\Model\Message;
 
