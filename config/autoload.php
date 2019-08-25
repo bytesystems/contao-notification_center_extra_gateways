@@ -14,7 +14,7 @@
  */
 ClassLoader::addNamespaces(
     [
-	'bytesystems',]
+	'NotificationCenterExtraGateways',]
 );
 
 
@@ -24,7 +24,7 @@ ClassLoader::addNamespaces(
 ClassLoader::addClasses(
     [
 	// Library
-	'bytesystems\NotificationCenterExtraGateways\Gateway\Zapier'                        => 'system/modules/notification_center_extra_gateways/library/NotificationCenterExtraGateways/Gateway/Zapier.php',
-	'bytesystems\NotificationCenterExtraGateways\MessageDraft\ZapierMessageDraft' => 'system/modules/notification_center_extra_gateways/library/NotificationCenterExtraGateways/MessageDraft/ZapierMessageDraft.php',
+	'NotificationCenterExtraGateways\Gateway\Zapier'                        => 'system/modules/notification_center_extra_gateways/library/NotificationCenterExtraGateways/Gateway/Zapier.php',
+	'NotificationCenterExtraGateways\MessageDraft\ZapierMessageDraft' => 'system/modules/notification_center_extra_gateways/library/NotificationCenterExtraGateways/MessageDraft/ZapierMessageDraft.php',
     ]
 );

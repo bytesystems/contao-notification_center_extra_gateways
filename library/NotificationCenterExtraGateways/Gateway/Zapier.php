@@ -1,9 +1,10 @@
 <?php
 
-namespace bytesystems\NotificationCenterExtraGateways\Gateway;
+namespace NotificationCenterExtraGateways\Gateway;
 
-use bytesystems\NotificationCenterExtraGateways\MessageDraft\ZapierMessageDraft;
+use NotificationCenterExtraGateways\MessageDraft\ZapierMessageDraft;
 use NotificationCenter\Gateway\Base;
+use NotificationCenter\Gateway\GatewayInterface;
 use NotificationCenter\MessageDraft\MessageDraftFactoryInterface;
 use NotificationCenter\MessageDraft\PostmarkMessageDraft;
 use NotificationCenter\Model\Language;
