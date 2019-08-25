@@ -11,30 +11,9 @@ use NotificationCenter\Model\Language;
 use NotificationCenter\Model\Message;
 
 
-class Zapier extends Base implements GatewayInterface, MessageDraftFactoryInterface
+class Zapier extends Base implements GatewayInterface
 {
 
-    /**
-     * Returns a MessageDraft
-     * @param   Message
-     * @param   array
-     * @param   string
-     * @return  MessageDraftInterface|null (if no draft could be found)
-     */
-    public function createDraft(Message $objMessage, array $arrTokens, $strLanguage = '')
-    {
-        if ($strLanguage == '') {
-            $strLanguage = $GLOBALS['TL_LANGUAGE'];
-        }
-
-        if (($objLanguage = Language::findByMessageAndLanguageOrFallback($objMessage, $strLanguage)) === null) {
-            \System::log(sprintf('Could not find matching language or fallback for message ID "%s" and language "%s".', $objMessage->id, $strLanguage), __METHOD__, TL_ERROR);
-
-            return null;
-        }
-
-        return new ZapierMessageDraft($objMessage, $objLanguage, $arrTokens);
-    }
 
     /**
      * Send Postmark request message
@@ -45,7 +24,7 @@ class Zapier extends Base implements GatewayInterface, MessageDraftFactoryInterf
      */
     public function send(Message $objMessage, array $arrTokens, $strLanguage = '')
     {
-        if ($this->objModel->postmark_key == '') {
+        if ($this->objModel->zapier_url == '') {
             \System::log(sprintf('Please provide the Zapier URL for message ID "%s"', $objMessage->id), __METHOD__, TL_ERROR);
 
             return false;
@@ -117,42 +96,31 @@ class Zapier extends Base implements GatewayInterface, MessageDraftFactoryInterf
 //            $arrData['Tag'] = $strTag;
 //        }
 //
-//        $strData = json_encode($arrData);
-//
-//        $objRequest = new \Request();
-//        $objRequest->setHeader('Content-Type', 'application/json');
+        $strData = json_encode($arrTokens);
+
+        $objRequest = new \Request();
+        $objRequest->setHeader('Content-Type', 'application/json');
 //        $objRequest->setHeader('X-Postmark-Server-Token', ($this->objModel->postmark_test ? 'POSTMARK_API_TEST' : $this->objModel->postmark_key));
-//        $objRequest->send(($this->objModel->postmark_ssl ? 'https://' : 'http://') . 'api.postmarkapp.com/email', $strData, 'POST');
+        $objRequest->send($this->objModel->zapier_url, $strData, 'POST');
+
+        // Postmark uses HTTP status code 10 for wrong API keys. The contao request class cannot handle this and thus returns 0.
+        $code = $objRequest->code;
+        if ($code == 0) {
+            $code = 10;
+        }
 //
-//        // Postmark uses HTTP status code 10 for wrong API keys. The contao request class cannot handle this and thus returns 0.
-//        $code = $objRequest->code;
-//        if ($code == 0) {
-//            $code = 10;
-//        }
-//
-//        if ($objRequest->hasError()) {
-//            \System::log(
-//                sprintf('Error sending the Postmark request for message ID "%s". HTTP Response status code: %s. JSON data sent: %s',
-//                    $objMessage->id,
-//                    $code,
-//                    $strData
-//                ),
-//                __METHOD__,
-//                TL_ERROR);
-//
-//            return false;
-//        } else {
-//            $strWouldHave = ($this->objModel->postmark_test) ? ' would have (test mode)' : '';
-//            \System::log(
-//                sprintf('The Postmark API accepted the request and%s sent %s emails. HTTP Response status code: %s. JSON data sent: %s',
-//                    $strWouldHave,
-//                    count($arrTo),
-//                    $code,
-//                    $strData
-//                ),
-//                __METHOD__,
-//                TL_GENERAL);
-//        }
+        if ($objRequest->hasError()) {
+            \System::log(
+                sprintf('Error sending the Zapier request for message ID "%s". HTTP Response status code: %s. JSON data sent: %s',
+                    $objMessage->id,
+                    $code,
+                    $strData
+                ),
+                __METHOD__,
+                TL_ERROR);
+
+            return false;
+        }
 
         return true;
     }
