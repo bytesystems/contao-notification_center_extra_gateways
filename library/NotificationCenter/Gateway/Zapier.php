@@ -45,11 +45,11 @@ class Zapier extends Base implements GatewayInterface, MessageDraftFactoryInterf
      */
     public function send(Message $objMessage, array $arrTokens, $strLanguage = '')
     {
-//        if ($this->objModel->postmark_key == '') {
-//            \System::log(sprintf('Please provide the Postmark API key for message ID "%s"', $objMessage->id), __METHOD__, TL_ERROR);
-//
-//            return false;
-//        }
+        if ($this->objModel->postmark_key == '') {
+            \System::log(sprintf('Please provide the Zapier URL for message ID "%s"', $objMessage->id), __METHOD__, TL_ERROR);
+
+            return false;
+        }
 //
 //        /**
 //         * @var $objDraft \NotificationCenter\MessageDraft\PostmarkMessageDraft
