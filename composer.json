@@ -1,0 +1,35 @@
+{
+    "name": "bytesystems/contao-notification_center_gateways",
+    "description":"Extends the notification center with some new Gateways.",
+    "keywords":["contao", "notification", "center", "inline", "css", "module", "developer", "zapier", "zap"],
+    "type": "contao-module",
+    "homepage":"https://github.com/bytesystems/contao-notification_center_gateways",
+    "license":"LGPL-3.0+",
+    "authors":[
+        {
+            "name":"bytesystems ITS GmbH",
+            "email":"heim@bytesystems.de",
+            "homepage":"http://www.bytesystems.de",
+            "role":"Developer"
+        }
+    ],
+    "support":{
+        "issues":"https://github.com/bytesystems/contao-notification_center_gateways/issues"
+    },
+    "require": {
+        "php": "~5.4 || ~7.0",
+        "contao/core-bundle": "^3.5.1 || ~4.1",
+        "contao-community-alliance/composer-plugin": "~2.4 || ~3.0",
+        "terminal42/notification_center": "~1.3",
+    },
+    "autoload": {
+        "classmap": [""]
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "": "system/modules/notification_center_extra_gateways"
+            }
+        }
+    }
+}
